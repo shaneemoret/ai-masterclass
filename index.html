@@ -359,6 +359,16 @@
   .kajabi-wrap button[type="submit"]:hover,
   .kajabi-wrap input[type="submit"]:hover{background:var(--gold-hover)!important}
   .kajabi-wrap label{color:var(--muted)!important;font-size:12px!important}
+  .kajabi-submit-frame{
+    position:absolute;
+    width:1px;
+    height:1px;
+    border:0;
+    clip:rect(0 0 0 0);
+    clip-path:inset(50%);
+    overflow:hidden;
+    white-space:nowrap;
+  }
 
   /* FAQ */
   .faq-list{max-width:960px;margin:0 auto}
@@ -722,6 +732,7 @@
     <div class="modal-eyebrow">Free LIVE Masterclass</div>
     <h3 class="modal-title" id="modalTitle">Save your <em>free seat.</em></h3>
     <p class="modal-sub">April 14th – 17th · 11:15am ET · Live on Zoom</p>
+    <iframe class="kajabi-submit-frame" name="kajabi-submit-frame" title="Kajabi form submission" tabindex="-1" aria-hidden="true"></iframe>
     <div class="kajabi-wrap">
       <script src="https://growthacademyglobal.mykajabi.com/forms/2149527768/embed.js"></script>
     </div>
@@ -745,6 +756,53 @@
   closeBtns.forEach(b => b.addEventListener('click', closeModal));
   modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+</script>
+
+<script>
+  // Kajabi redirect fallback
+  const kajabiWrap = document.querySelector('.kajabi-wrap');
+  const kajabiSubmitFrame = document.querySelector('.kajabi-submit-frame');
+  const thankYouUrl = new URL('thank-you.html', window.location.href).toString();
+  let kajabiSubmitStartedAt = 0;
+  let kajabiRedirected = false;
+
+  function redirectToThankYou() {
+    if (kajabiRedirected) return;
+    kajabiRedirected = true;
+    window.location.assign(thankYouUrl);
+  }
+
+  function wireKajabiForm() {
+    const form = kajabiWrap?.querySelector('form[action*="/form_submissions"]');
+    if (!form || form.dataset.redirectWired === 'true') return;
+
+    form.dataset.redirectWired = 'true';
+    form.setAttribute('target', 'kajabi-submit-frame');
+
+    form.addEventListener('submit', () => {
+      kajabiRedirected = false;
+      kajabiSubmitStartedAt = Date.now();
+      window.setTimeout(() => {
+        if (kajabiSubmitStartedAt && !kajabiRedirected) {
+          redirectToThankYou();
+        }
+      }, 2500);
+    });
+  }
+
+  if (kajabiSubmitFrame) {
+    kajabiSubmitFrame.addEventListener('load', () => {
+      if (!kajabiSubmitStartedAt) return;
+      if (Date.now() - kajabiSubmitStartedAt < 250) return;
+      redirectToThankYou();
+    });
+  }
+
+  if (kajabiWrap) {
+    const kajabiObserver = new MutationObserver(() => wireKajabiForm());
+    kajabiObserver.observe(kajabiWrap, { childList: true, subtree: true });
+    wireKajabiForm();
+  }
 </script>
 
 <script>
