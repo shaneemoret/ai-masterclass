@@ -157,47 +157,6 @@
     color:var(--gold);
     transform:translateY(-2px);
   }
-  .day-link{
-    position:relative;
-    margin-top:24px;
-    padding-top:24px;
-    border-top:1px solid rgba(196,169,91,0.14);
-  }
-  .day-link-label{
-    display:block;
-    color:var(--gold);
-    font-size:11px;
-    text-transform:uppercase;
-    letter-spacing:0.24em;
-    margin-bottom:10px;
-  }
-  .day-link p{
-    color:var(--muted);
-    font-size:14px;
-    margin-bottom:14px;
-  }
-  .day-link a{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    min-width:240px;
-    background:var(--gold);
-    color:var(--bg);
-    text-decoration:none;
-    border-radius:14px;
-    padding:15px 24px;
-    font-size:13px;
-    text-transform:uppercase;
-    letter-spacing:0.12em;
-    font-weight:600;
-    transition:all 0.3s ease;
-    box-shadow:0 8px 32px rgba(196,169,91,0.22);
-  }
-  .day-link a:hover{
-    background:var(--gold-hover);
-    transform:translateY(-2px);
-  }
-
   /* Footer */
   footer{
     padding:48px 0;text-align:center;
@@ -220,7 +179,6 @@
   @media(max-width:480px){
     .calendar-links{flex-direction:column;align-items:stretch}
     .calendar-links a{width:100%}
-    .day-link a{width:100%;min-width:0}
   }
   @media(prefers-reduced-motion:reduce){
     *,*::before,*::after{animation:none!important;transition:none!important}
@@ -258,16 +216,11 @@
       <p class="calendar-sub">April 14th – 17th · 11:15am ET · LIVE</p>
       <div class="calendar-links">
         <a href="webcal://masterclass.growthacademy.global/ai-agents-masterclass-series.ics" rel="noopener noreferrer">Apple</a>
-        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=4-Day%20AI%20Agents%20Masterclass&dates=20260414T111500%2F20260414T121500&ctz=America%2FNew_York&details=Live%20masterclass.%20Check%20your%20email%20from%20Growth%20Academy%20Global%20for%20access%20details%20and%20daily%20reminders.&location=Access%20details%20in%20your%20email&recur=RRULE%3AFREQ%3DDAILY%3BCOUNT%3D4" target="_blank" rel="noopener noreferrer">Google</a>
+        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=4-Day%20AI%20Agents%20Masterclass&dates=20260414T111500%2F20260414T121500&ctz=America%2FNew_York&details=Day%201%20live%20link%3A%20https%3A%2F%2Fwww.youtube.com%2Flive%2Fiz9f1RxPWh4%3Fsi%3DnxhcgumcD5sZbIJZ%0A%0ADays%202%E2%80%934%20access%20details%20will%20arrive%20by%20email%20from%20Growth%20Academy%20Global.%20Check%20your%20inbox%20for%20daily%20reminders.&location=Access%20details%20in%20your%20email&recur=RRULE%3AFREQ%3DDAILY%3BCOUNT%3D4" target="_blank" rel="noopener noreferrer">Google</a>
         <a href="/ai-agents-masterclass-series.ics" download="ai-agents-masterclass-series.ics" rel="noopener noreferrer">Office 365</a>
         <a href="/ai-agents-masterclass-series.ics" download="ai-agents-masterclass-series.ics" rel="noopener noreferrer">Outlook</a>
         <a href="/ai-agents-masterclass-series.ics" download="ai-agents-masterclass-series.ics" rel="noopener noreferrer">Outlook.com</a>
         <a href="/ai-agents-masterclass-series.ics" download="ai-agents-masterclass-series.ics" rel="noopener noreferrer">Yahoo</a>
-      </div>
-      <div class="day-link">
-        <span class="day-link-label">Day 1 Link</span>
-        <p>Day 1 is already live. Use this direct link when it's time to join.</p>
-        <a href="https://www.youtube.com/live/iz9f1RxPWh4?si=nxhcgumcD5sZbIJZ" target="_blank" rel="noopener noreferrer">Watch Day 1 Live</a>
       </div>
     </div>
 
