@@ -3,12 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free 3-Day Masterclass: AI Agents for Small Business Owners | Growth Academy Global</title>
-<meta name="description" content="A free 3-day live masterclass for small business owners. Learn Codex, OpenClaw, and Claude Code — the three AI agents rewriting how small companies operate. Starts Tuesday, April 14.">
-<meta property="og:title" content="Free 3-Day Masterclass: AI Agents for Small Business Owners">
-<meta property="og:description" content="Three days. Three tools. One unfair advantage. Live on Zoom, starting April 14.">
+<title>Free 4-Day Masterclass: AI Agents for Small Business Owners | Growth Academy Global</title>
+<meta name="description" content="A free 4-day live masterclass for small business owners. Learn Codex, OpenClaw, Claude, and Google AI — the four agents rewriting how small companies operate. Starts Tuesday, April 14 at 11:15am ET.">
+<meta property="og:title" content="Free 4-Day Masterclass: AI Agents for Small Business Owners">
+<meta property="og:description" content="Four days. Four agents. One unfair advantage. Live on Zoom, starting April 14 at 11:15am ET.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://www.growthacademy.global/og-masterclass.jpg">
+<meta property="og:url" content="https://masterclass.growthacademy.global/">
+<meta property="og:image" content="https://masterclass.growthacademy.global/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230D0D0D'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' fill='%23C4A95B' font-family='Georgia,serif' font-size='20' font-weight='600' dominant-baseline='middle'%3EG%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -138,10 +141,10 @@
     opacity:0.9;
     animation:floatLogo 9s ease-in-out infinite;
   }
-  .fl-1{top:6%;left:6%;animation-delay:0s}
-  .fl-2{top:16%;right:7%;width:96px;height:96px;animation-delay:1.6s;animation-duration:11s}
-  .fl-3{top:3%;left:38%;width:82px;height:82px;animation-delay:0.8s;animation-duration:10s}
-  .fl-4{top:9%;left:60%;width:84px;height:84px;animation-delay:2.4s;animation-duration:12s}
+  .fl-1{top:4%;left:3%;animation-delay:0s}
+  .fl-2{top:6%;right:3%;width:92px;height:92px;animation-delay:1.6s;animation-duration:11s}
+  .fl-3{top:42%;left:2%;width:76px;height:76px;animation-delay:0.8s;animation-duration:10s}
+  .fl-4{top:44%;right:2%;width:80px;height:80px;animation-delay:2.4s;animation-duration:12s}
   @keyframes floatLogo{
     0%,100%{transform:translateY(0) rotate(-2deg)}
     50%{transform:translateY(-22px) rotate(3deg)}
@@ -368,6 +371,31 @@
     clip-path:inset(50%);
     overflow:hidden;
     white-space:nowrap;
+  }
+
+  /* Mobile sticky CTA */
+  .sticky-cta{
+    display:none;
+    position:fixed;left:0;right:0;bottom:0;z-index:90;
+    padding:14px 16px calc(14px + env(safe-area-inset-bottom));
+    background:rgba(13,13,13,0.92);
+    backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border-top:1px solid rgba(196,169,91,0.25);
+    transform:translateY(100%);
+    transition:transform 0.4s cubic-bezier(0.2,0.7,0.2,1);
+  }
+  .sticky-cta.show{transform:translateY(0)}
+  .sticky-cta button{
+    width:100%;background:var(--gold);color:var(--bg);
+    border:none;border-radius:14px;
+    padding:18px 24px;font-size:13px;font-weight:600;
+    text-transform:uppercase;letter-spacing:0.12em;
+    font-family:var(--sans);cursor:pointer;
+    box-shadow:0 8px 32px rgba(196,169,91,0.25);
+  }
+  @media(max-width:860px){
+    .sticky-cta{display:block}
+    body{padding-bottom:84px}
   }
 
   /* FAQ */
@@ -616,7 +644,7 @@
 
     <div class="cta-row">
       <button type="button" class="btn-primary js-open-modal">Save My Free Seat</button>
-      <a href="#curriculum" class="btn-secondary">See the 3 Days</a>
+      <a href="#curriculum" class="btn-secondary">See the 4 Days</a>
     </div>
   </div>
 </header>
@@ -726,6 +754,10 @@
   </div>
 </footer>
 
+<div class="sticky-cta" id="stickyCta" aria-hidden="true">
+  <button type="button" class="js-open-modal">Save My Free Seat</button>
+</div>
+
 <div class="modal-overlay" id="registerModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
   <div class="modal-dialog">
     <button type="button" class="modal-close js-close-modal" aria-label="Close">&times;</button>
@@ -756,6 +788,24 @@
   closeBtns.forEach(b => b.addEventListener('click', closeModal));
   modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+  // Mobile sticky CTA — show after scrolling past hero
+  const stickyCta = document.getElementById('stickyCta');
+  const heroEl = document.querySelector('.hero');
+  if (stickyCta && heroEl) {
+    const onScroll = () => {
+      const heroBottom = heroEl.offsetTop + heroEl.offsetHeight;
+      if (window.scrollY > heroBottom - 200) {
+        stickyCta.classList.add('show');
+        stickyCta.setAttribute('aria-hidden', 'false');
+      } else {
+        stickyCta.classList.remove('show');
+        stickyCta.setAttribute('aria-hidden', 'true');
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
 </script>
 
 <script>
