@@ -337,31 +337,14 @@
     .modal-title{font-size:28px}
   }
 
-  .kajabi-wrap{margin-top:8px;position:relative;z-index:2}
-  .kajabi-wrap form,
-  .kajabi-wrap .kajabi-form{max-width:100%}
-  .kajabi-wrap input[type="text"],
-  .kajabi-wrap input[type="email"]{
-    width:100%!important;background:rgba(245,240,235,0.04)!important;
-    border:1px solid rgba(196,169,91,0.3)!important;border-radius:12px!important;
-    color:var(--cream)!important;padding:16px 20px!important;
-    font-family:var(--sans)!important;font-size:15px!important;
-    margin-bottom:12px!important;
+  .kajabi-wrap{
+    margin-top:8px;position:relative;z-index:2;
+    border-radius:18px;overflow:hidden;background:#fff;
   }
-  .kajabi-wrap input::placeholder{color:var(--muted-light)!important}
-  .kajabi-wrap button[type="submit"],
-  .kajabi-wrap input[type="submit"]{
-    width:100%!important;background:var(--gold)!important;color:var(--bg)!important;
-    border:none!important;border-radius:14px!important;
-    padding:18px 32px!important;font-size:13px!important;
-    text-transform:uppercase!important;letter-spacing:0.12em!important;
-    font-weight:600!important;cursor:pointer!important;
-    font-family:var(--sans)!important;
-    transition:background 0.3s ease!important;
+  .kajabi-form-frame{
+    display:block;width:100%;height:360px;min-height:320px;
+    border:0;background:#fff;border-radius:14px;
   }
-  .kajabi-wrap button[type="submit"]:hover,
-  .kajabi-wrap input[type="submit"]:hover{background:var(--gold-hover)!important}
-  .kajabi-wrap label{color:var(--muted)!important;font-size:12px!important}
   .kajabi-submit-frame{
     position:absolute;
     width:1px;
@@ -766,17 +749,29 @@
     <p class="modal-sub">April 14th – 17th · 11:15am ET · Live on Zoom</p>
     <iframe class="kajabi-submit-frame" name="kajabi-submit-frame" title="Kajabi form submission" tabindex="-1" aria-hidden="true"></iframe>
     <div class="kajabi-wrap">
-      <script src="https://growthacademyglobal.mykajabi.com/forms/2149527768/embed.js"></script>
+      <iframe
+        id="kajabiFormFrame"
+        class="kajabi-form-frame"
+        width="100%"
+        height="360"
+        frameborder="0"
+        scrolling="no"
+        title="Register for the Free 4-Day AI Masterclass"
+        loading="lazy"
+      ></iframe>
     </div>
   </div>
 </div>
 
 <script>
+  window.ensureKajabiFormLoaded = window.ensureKajabiFormLoaded || function(){};
+
   // Modal open/close
   const modal = document.getElementById('registerModal');
   const openBtns = document.querySelectorAll('.js-open-modal');
   const closeBtns = document.querySelectorAll('.js-close-modal');
   function openModal(){
+    window.ensureKajabiFormLoaded();
     modal.classList.add('open');
     document.body.classList.add('modal-open');
   }
@@ -809,12 +804,13 @@
 </script>
 
 <script>
-  // Kajabi redirect fallback
-  const kajabiWrap = document.querySelector('.kajabi-wrap');
+  // Kajabi modal loader + redirect fallback
+  const kajabiFrame = document.getElementById('kajabiFormFrame');
   const kajabiSubmitFrame = document.querySelector('.kajabi-submit-frame');
   const thankYouUrl = new URL('thank-you.html', window.location.href).toString();
   let kajabiSubmitStartedAt = 0;
   let kajabiRedirected = false;
+  let kajabiFrameLoaded = false;
 
   function redirectToThankYou() {
     if (kajabiRedirected) return;
@@ -822,23 +818,67 @@
     window.location.assign(thankYouUrl);
   }
 
-  function wireKajabiForm() {
-    const form = kajabiWrap?.querySelector('form[action*="/form_submissions"]');
-    if (!form || form.dataset.redirectWired === 'true') return;
+  function buildKajabiFrameDocument() {
+    return `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    html,body{margin:0;padding:0;background:#fff}
+  </style>
+</head>
+<body>
+  <script src="https://growthacademyglobal.mykajabi.com/forms/2149527768/embed.js"><\/script>
+  <script>
+    (function() {
+      function postHeight() {
+        var formRoot = document.getElementById('kajabi-form') || document.body;
+        var height = Math.max(
+          formRoot ? formRoot.scrollHeight : 0,
+          formRoot ? formRoot.offsetHeight : 0,
+          document.body ? document.body.scrollHeight : 0
+        );
+        parent.postMessage({ type: 'kajabi-form-height', height: height }, '*');
+      }
 
-    form.dataset.redirectWired = 'true';
-    form.setAttribute('target', 'kajabi-submit-frame');
+      function wireKajabiForm() {
+        var form = document.querySelector('form[action*="/form_submissions"]');
+        if (!form || form.dataset.redirectWired === 'true') return;
 
-    form.addEventListener('submit', () => {
-      kajabiRedirected = false;
-      kajabiSubmitStartedAt = Date.now();
-      window.setTimeout(() => {
-        if (kajabiSubmitStartedAt && !kajabiRedirected) {
-          redirectToThankYou();
-        }
-      }, 2500);
-    });
+        form.dataset.redirectWired = 'true';
+        form.setAttribute('target', 'kajabi-submit-frame');
+        form.addEventListener('submit', function() {
+          parent.postMessage({ type: 'kajabi-form-submitted' }, '*');
+        });
+      }
+
+      var observer = new MutationObserver(function() {
+        wireKajabiForm();
+        postHeight();
+      });
+
+      observer.observe(document.documentElement, { childList: true, subtree: true });
+
+      window.addEventListener('load', function() {
+        wireKajabiForm();
+        postHeight();
+        window.setTimeout(postHeight, 250);
+        window.setTimeout(postHeight, 1000);
+      });
+
+      window.addEventListener('resize', postHeight);
+    })();
+  <\/script>
+</body>
+</html>`;
   }
+
+  window.ensureKajabiFormLoaded = function() {
+    if (!kajabiFrame || kajabiFrameLoaded) return;
+    kajabiFrameLoaded = true;
+    kajabiFrame.srcdoc = buildKajabiFrameDocument();
+  };
 
   if (kajabiSubmitFrame) {
     kajabiSubmitFrame.addEventListener('load', () => {
@@ -848,11 +888,24 @@
     });
   }
 
-  if (kajabiWrap) {
-    const kajabiObserver = new MutationObserver(() => wireKajabiForm());
-    kajabiObserver.observe(kajabiWrap, { childList: true, subtree: true });
-    wireKajabiForm();
-  }
+  window.addEventListener('message', (event) => {
+    if (!kajabiFrame || event.source !== kajabiFrame.contentWindow || !event.data) return;
+
+    if (event.data.type === 'kajabi-form-height' && Number.isFinite(event.data.height)) {
+      const nextHeight = Math.max(320, Math.ceil(event.data.height) + 8);
+      kajabiFrame.style.height = `${nextHeight}px`;
+    }
+
+    if (event.data.type === 'kajabi-form-submitted') {
+      kajabiRedirected = false;
+      kajabiSubmitStartedAt = Date.now();
+      window.setTimeout(() => {
+        if (kajabiSubmitStartedAt && !kajabiRedirected) {
+          redirectToThankYou();
+        }
+      }, 2500);
+    }
+  });
 </script>
 
 <script>
