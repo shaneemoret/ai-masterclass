@@ -1,0 +1,52 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Growth Academy Global//AI Agents Masterclass//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:4-Day AI Agents Masterclass
+
+BEGIN:VEVENT
+UID:ai-masterclass-day1-20260414@masterclass.growthacademy.global
+DTSTAMP:20260408T153000Z
+DTSTART:20260414T151500Z
+DTEND:20260414T161500Z
+SUMMARY:AI Agents Masterclass - Day 1 of 4
+DESCRIPTION:OpenAI Codex. Live on Zoom. Check your email for the Zoom link.
+LOCATION:Zoom link in your email
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:ai-masterclass-day2-20260415@masterclass.growthacademy.global
+DTSTAMP:20260408T153000Z
+DTSTART:20260415T151500Z
+DTEND:20260415T161500Z
+SUMMARY:AI Agents Masterclass - Day 2 of 4
+DESCRIPTION:OpenClaw. Live on Zoom. Check your email for the Zoom link.
+LOCATION:Zoom link in your email
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:ai-masterclass-day3-20260416@masterclass.growthacademy.global
+DTSTAMP:20260408T153000Z
+DTSTART:20260416T151500Z
+DTEND:20260416T161500Z
+SUMMARY:AI Agents Masterclass - Day 3 of 4
+DESCRIPTION:Claude. Live on Zoom. Check your email for the Zoom link.
+LOCATION:Zoom link in your email
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:ai-masterclass-day4-20260417@masterclass.growthacademy.global
+DTSTAMP:20260408T153000Z
+DTSTART:20260417T151500Z
+DTEND:20260417T161500Z
+SUMMARY:AI Agents Masterclass - Day 4 of 4
+DESCRIPTION:Google AI. Live on Zoom. Check your email for the Zoom link.
+LOCATION:Zoom link in your email
+STATUS:CONFIRMED
+END:VEVENT
+
+END:VCALENDAR
