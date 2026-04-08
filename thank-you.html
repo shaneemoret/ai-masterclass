@@ -184,6 +184,46 @@
     color:var(--gold);
     transform:translateY(-2px);
   }
+  .day-link{
+    position:relative;
+    margin-top:24px;
+    padding-top:24px;
+    border-top:1px solid rgba(196,169,91,0.14);
+  }
+  .day-link-label{
+    display:block;
+    color:var(--gold);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.24em;
+    margin-bottom:10px;
+  }
+  .day-link p{
+    color:var(--muted);
+    font-size:14px;
+    margin-bottom:14px;
+  }
+  .day-link a{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:240px;
+    background:var(--gold);
+    color:var(--bg);
+    text-decoration:none;
+    border-radius:14px;
+    padding:15px 24px;
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    font-weight:600;
+    transition:all 0.3s ease;
+    box-shadow:0 8px 32px rgba(196,169,91,0.22);
+  }
+  .day-link a:hover{
+    background:var(--gold-hover);
+    transform:translateY(-2px);
+  }
 
   /* Footer */
   footer{
@@ -209,6 +249,7 @@
   @media(max-width:480px){
     .calendar-links{flex-direction:column;align-items:stretch}
     .calendar-links a{width:100%}
+    .day-link a{width:100%;min-width:0}
   }
   @media(prefers-reduced-motion:reduce){
     *,*::before,*::after{animation:none!important;transition:none!important}
@@ -258,6 +299,11 @@
         <a href="/ai-agents-masterclass-series.ics" download="ai-agents-masterclass-series.ics" rel="noopener noreferrer">Outlook</a>
         <a href="/ai-agents-masterclass-series.ics" download="ai-agents-masterclass-series.ics" rel="noopener noreferrer">Outlook.com</a>
         <a href="/ai-agents-masterclass-series.ics" download="ai-agents-masterclass-series.ics" rel="noopener noreferrer">Yahoo</a>
+      </div>
+      <div class="day-link">
+        <span class="day-link-label">Day 1 Link</span>
+        <p>Day 1 is already live. Use this direct link when it's time to join.</p>
+        <a href="https://www.youtube.com/live/iz9f1RxPWh4?si=nxhcgumcD5sZbIJZ" target="_blank" rel="noopener noreferrer">Watch Day 1 Live</a>
       </div>
     </div>
 
