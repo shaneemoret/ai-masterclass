@@ -1,0 +1,6 @@
+.git
+.wrangler
+.playwright-cli
+worker-reminders
+schema.sql
+wrangler.toml
