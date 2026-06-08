@@ -3,16 +3,16 @@ VERSION:2.0
 PRODID:-//Growth Academy Global//AI Agents Masterclass//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
-X-WR-CALNAME:AI Agents Masterclass (June 2-4)
+X-WR-CALNAME:AI Agents Masterclass (June 9-11)
 REFRESH-INTERVAL;VALUE=DURATION:PT12H
 X-PUBLISHED-TTL:PT12H
 
 BEGIN:VEVENT
-UID:ai-masterclass-day1-20260602@masterclass.growthacademy.global
+UID:ai-masterclass-day1-20260609@masterclass.growthacademy.global
 DTSTAMP:20260530T120000Z
 SEQUENCE:1
-DTSTART:20260602T161500Z
-DTEND:20260602T171500Z
+DTSTART:20260609T161500Z
+DTEND:20260609T171500Z
 SUMMARY:AI Agents Masterclass - Day 1: AI Agent Business Strategy
 DESCRIPTION:Day 1 of the free 3-day ChatGPT to Your First AI Agent masterclass with Shanee Moret.\n\nThe live link is emailed before the event and included in every reminder. Check your email from Growth Academy Global for access details.\n\nPlease show up on time.
 LOCATION:Access details in your email
@@ -20,11 +20,11 @@ STATUS:CONFIRMED
 END:VEVENT
 
 BEGIN:VEVENT
-UID:ai-masterclass-day2-20260603@masterclass.growthacademy.global
+UID:ai-masterclass-day2-20260610@masterclass.growthacademy.global
 DTSTAMP:20260530T120000Z
 SEQUENCE:1
-DTSTART:20260603T161500Z
-DTEND:20260603T171500Z
+DTSTART:20260610T161500Z
+DTEND:20260610T171500Z
 SUMMARY:AI Agents Masterclass - Day 2: AI Agents for Lead Gen and Sales
 DESCRIPTION:Day 2 of the free 3-day ChatGPT to Your First AI Agent masterclass with Shanee Moret.\n\nThe live link is emailed before the event and included in every reminder. Check your email from Growth Academy Global for access details.
 LOCATION:Access details in your email
@@ -32,11 +32,11 @@ STATUS:CONFIRMED
 END:VEVENT
 
 BEGIN:VEVENT
-UID:ai-masterclass-day3-20260604@masterclass.growthacademy.global
+UID:ai-masterclass-day3-20260611@masterclass.growthacademy.global
 DTSTAMP:20260530T120000Z
 SEQUENCE:1
-DTSTART:20260604T161500Z
-DTEND:20260604T171500Z
+DTSTART:20260611T161500Z
+DTEND:20260611T171500Z
 SUMMARY:AI Agents Masterclass - Day 3: AI Agents for Marketing and Content Systems
 DESCRIPTION:Day 3 of the free 3-day ChatGPT to Your First AI Agent masterclass with Shanee Moret.\n\nThe live link is emailed before the event and included in every reminder. Check your email from Growth Academy Global for access details.
 LOCATION:Access details in your email
