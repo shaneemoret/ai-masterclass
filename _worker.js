@@ -9,6 +9,25 @@ const apiHeaders = {
   "cache-control": "no-store",
 };
 
+const blockedAssetPrefixes = [
+  "/.assetsignore",
+  "/.gitignore",
+  "/.playwright-cli",
+  "/.wrangler",
+  "/red-mockup",
+  "/schema.sql",
+  "/worker-reminders",
+  "/wrangler.toml",
+];
+
+const blockedAssetPaths = new Set([
+  "/assets/codex-home-background.png",
+]);
+
+function isBlockedAsset(pathname) {
+  return blockedAssetPaths.has(pathname) || blockedAssetPrefixes.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
+}
+
 function methodNotAllowed() {
   return new Response(null, { status: 405, headers: apiHeaders });
 }
@@ -26,6 +45,16 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const context = makeContext(request, env, ctx);
+
+    if (isBlockedAsset(url.pathname)) {
+      return new Response(null, {
+        status: 404,
+        headers: {
+          "cache-control": "no-store",
+          "x-robots-tag": "noindex, nofollow",
+        },
+      });
+    }
 
     if (url.pathname === "/api/register") {
       if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: apiHeaders });
