@@ -7,11 +7,11 @@ const REPLY_TO = 'hello@growthacademy.global';
 const INTERNAL_NOTIFICATION_TO = ['hello@growthacademy.global', 'support@growthacademy.global'];
 const SITE = 'https://masterclass.growthacademy.global';
 const ICS_URL = `${SITE}/series.ics`;
-const REFERRAL_URL = `${SITE}/?utm_source=registrant-share&utm_campaign=june9-masterclass-welcome-email`;
-const SERIES_ID = 'codex-masterclass-june-2026';
-const SERIES_NAME = 'ChatGPT to Your First AI Agent Masterclass | June 9-11, 2026';
+const REFERRAL_URL = `${SITE}/?utm_source=registrant-share&utm_campaign=july14-masterclass-welcome-email`;
+const SERIES_ID = 'codex-masterclass-july-2026';
+const SERIES_NAME = 'Build Your AI Agent Operating System Masterclass | July 14-16, 2026';
 const RESEND_SIGNAL_SEGMENTS = [
-  'Signal - Current Codex Masterclass June 2026',
+  'Signal - Current Codex Masterclass July 2026',
   'Signal - Now Current Event',
   'Signal - Recent 0-30 Days',
   'Signal - Top Sales Follow-Up',
@@ -201,7 +201,7 @@ async function sendWelcome({ env, name, email }) {
     from: FROM,
     to: [email],
     reply_to: REPLY_TO,
-    subject: "You're in. ChatGPT to Your First AI Agent starts Tue June 9.",
+    subject: "You're in. Build Your AI Agent Operating System starts Tue July 14.",
     html,
     text,
     tags: [{ name: 'kind', value: 'welcome' }, { name: 'series', value: SERIES_ID }],
@@ -279,8 +279,8 @@ async function syncRegistrationContact({ env, name, email, businessOwner }) {
     const firstName = name.split(/\s+/)[0] || '';
     const lastName = name.split(/\s+/).slice(1).join(' ');
     const sourceSignals = customerSignal
-      ? 'current_codex_masterclass_june_2026, event_registered, customer_gt25, previous_high_value_customer'
-      : 'current_codex_masterclass_june_2026, event_registered';
+      ? 'current_codex_masterclass_july_2026, event_registered, customer_gt25, previous_high_value_customer'
+      : 'current_codex_masterclass_july_2026, event_registered';
     const customerEvidence = customerSignal
       ? `High-value customer: $${Math.round(customerSignal.customer_lifetime_value)} CLV; ${customerSignal.products_paid_for || 'products on file'}`
       : '';
@@ -312,8 +312,8 @@ async function syncRegistrationContact({ env, name, email, businessOwner }) {
         current_masterclass_registered_at: registeredAt,
         business_owner: businessOwner,
         followup_angle: customerSignal
-          ? 'High-value customer just registered for the June Codex Masterclass. Prioritize personal follow-up and AI community invitation.'
-          : 'Timely: just registered for the June Codex Masterclass. Follow up around attendance and invite to the AI community.',
+          ? 'High-value customer just registered for the July Codex Masterclass. Prioritize personal follow-up and AI community invitation.'
+          : 'Timely: just registered for the July Codex Masterclass. Follow up around attendance and invite to the AI community.',
         evidence_summary: appendEvidence(
           appendEvidence(propertyValue(existingProperties.evidence_summary), customerEvidence),
           `Registered for ${SERIES_NAME}`
@@ -477,16 +477,16 @@ function sleep(ms) {
 function welcomeText({ firstName }) {
   return `Hi ${firstName},
 
-You're registered for the free 3-day ChatGPT to Your First AI Agent masterclass.
+You're registered for the free 3-day Build Your AI Agent Operating System masterclass.
 
-When: Tuesday June 9 – Thursday June 11, 2026
+When: Tuesday July 14 – Thursday July 16, 2026
 Time: 12:15pm ET each day
 Where: The live link will be emailed before the event and included in reminders
 
 What you'll get:
-  Day 1 (Tue June 9) — AI Agent Business Strategy
-  Day 2 (Wed June 10) — AI Agents for Lead Gen and Sales
-  Day 3 (Thu June 11) — AI Agents for Marketing and Content Systems
+  Day 1 (Tue July 14) — Your Business Context
+  Day 2 (Wed July 15) — Your Follow-Up Engine
+  Day 3 (Thu July 16) — Your Command Center
 
 Add all 3 sessions to your calendar:
 ${ICS_URL}
@@ -517,12 +517,12 @@ function welcomeHtml({ firstName }) {
 <title>You're in.</title>
 </head>
 <body style="margin:0;padding:0;background:#050505;font-family:${disp};color:#ffffff;-webkit-font-smoothing:antialiased;">
-<div style="display:none;max-height:0;overflow:hidden;opacity:0;">You're registered for the free 3-day ChatGPT to Your First AI Agent masterclass. June 9-11, 12:15pm ET.</div>
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;">You're registered for the free 3-day Build Your AI Agent Operating System masterclass. July 14-16, 12:15pm ET.</div>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#050505;">
   <tr><td align="center" style="padding:0 0 40px 0;">
 
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0f0f10;border-bottom:1px solid #373737;">
-      <tr><td align="center" style="padding:13px 16px;color:#1fb6ff;font-family:${mono};font-size:12px;line-height:1.3;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;">Live Masterclass &nbsp;|&nbsp; June 9-11 &nbsp;|&nbsp; 12:15 PM ET</td></tr>
+      <tr><td align="center" style="padding:13px 16px;color:#1fb6ff;font-family:${mono};font-size:12px;line-height:1.3;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;">Live Masterclass &nbsp;|&nbsp; July 14-16 &nbsp;|&nbsp; 12:15 PM ET</td></tr>
     </table>
 
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;">
@@ -538,22 +538,22 @@ function welcomeHtml({ firstName }) {
 
             <h1 style="font-family:${disp};font-size:46px;line-height:0.92;font-weight:600;letter-spacing:-0.01em;color:#ffffff;margin:0 0 20px 0;">Hi ${escapeHtml(firstName)}.<br>You're <span style="color:#1fb6ff;border-bottom:3px solid #0a72ff;">in</span>.</h1>
 
-            <p style="color:#ffffff;font-size:18px;line-height:1.4;margin:0 0 18px 0;font-weight:500;">Your seat is saved for the free 3-day <span style="color:#1fb6ff;font-weight:700;">ChatGPT to Your First AI Agent</span> masterclass.</p>
-            <p style="color:#b8b8c0;font-size:15px;line-height:1.6;margin:0 0 30px 0;">We go live <strong style="color:#ffffff;">Tuesday, June 9</strong> at <strong style="color:#ffffff;">12:15 PM ET</strong>. The live link is emailed before the event and included in every reminder.</p>
+            <p style="color:#ffffff;font-size:18px;line-height:1.4;margin:0 0 18px 0;font-weight:500;">Your seat is saved for the free 3-day <span style="color:#1fb6ff;font-weight:700;">Build Your AI Agent Operating System</span> masterclass.</p>
+            <p style="color:#b8b8c0;font-size:15px;line-height:1.6;margin:0 0 30px 0;">We go live <strong style="color:#ffffff;">Tuesday, July 14</strong> at <strong style="color:#ffffff;">12:15 PM ET</strong>. The live link is emailed before the event and included in every reminder.</p>
 
             <div style="font-family:${mono};font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:#1fb6ff;padding-bottom:12px;border-bottom:1px solid #373737;margin-bottom:0;">What you'll learn</div>
             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 30px 0;">
               <tr><td style="padding:18px 0;border-bottom:1px solid #252525;">
-                <div style="font-family:${mono};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#7f8590;margin-bottom:7px;">Day 1 &middot; Tue June 9</div>
-                <div style="font-family:${disp};color:#ffffff;font-size:21px;line-height:1.1;font-weight:600;">AI Agent Business Strategy</div>
+                <div style="font-family:${mono};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#7f8590;margin-bottom:7px;">Day 1 &middot; Tue July 14</div>
+                <div style="font-family:${disp};color:#ffffff;font-size:21px;line-height:1.1;font-weight:600;">Your Business Context</div>
               </td></tr>
               <tr><td style="padding:18px 0;border-bottom:1px solid #252525;">
-                <div style="font-family:${mono};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#7f8590;margin-bottom:7px;">Day 2 &middot; Wed June 10</div>
-                <div style="font-family:${disp};color:#ffffff;font-size:21px;line-height:1.1;font-weight:600;">AI Agents for Lead Gen and Sales</div>
+                <div style="font-family:${mono};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#7f8590;margin-bottom:7px;">Day 2 &middot; Wed July 15</div>
+                <div style="font-family:${disp};color:#ffffff;font-size:21px;line-height:1.1;font-weight:600;">Your Follow-Up Engine</div>
               </td></tr>
               <tr><td style="padding:18px 0;">
-                <div style="font-family:${mono};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#7f8590;margin-bottom:7px;">Day 3 &middot; Thu June 11</div>
-                <div style="font-family:${disp};color:#ffffff;font-size:21px;line-height:1.1;font-weight:600;">AI Agents for Marketing and Content Systems</div>
+                <div style="font-family:${mono};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#7f8590;margin-bottom:7px;">Day 3 &middot; Thu July 16</div>
+                <div style="font-family:${disp};color:#ffffff;font-size:21px;line-height:1.1;font-weight:600;">Your Command Center</div>
               </td></tr>
             </table>
 

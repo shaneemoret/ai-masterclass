@@ -1,44 +1,44 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//Growth Academy Global//AI Agents Masterclass//EN
+PRODID:-//Growth Academy Global//Build Your AI Agent Operating System//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
-X-WR-CALNAME:AI Agents Masterclass (June 9-11)
+X-WR-CALNAME:Build Your AI Agent Operating System (July 14-16)
 REFRESH-INTERVAL;VALUE=DURATION:PT12H
 X-PUBLISHED-TTL:PT12H
 
 BEGIN:VEVENT
-UID:ai-masterclass-day1-20260609@masterclass.growthacademy.global
+UID:ai-masterclass-day1-20260714@masterclass.growthacademy.global
 DTSTAMP:20260530T120000Z
 SEQUENCE:1
-DTSTART:20260609T161500Z
-DTEND:20260609T171500Z
-SUMMARY:AI Agents Masterclass - Day 1: AI Agent Business Strategy
-DESCRIPTION:Day 1 of the free 3-day ChatGPT to Your First AI Agent masterclass with Shanee Moret.\n\nThe live link is emailed before the event and included in every reminder. Check your email from Growth Academy Global for access details.\n\nPlease show up on time.
+DTSTART:20260714T161500Z
+DTEND:20260714T171500Z
+SUMMARY:Build Your AI Agent Operating System - Day 1: Your Business Context
+DESCRIPTION:Day 1 of the free 3-day Build Your AI Agent Operating System masterclass with Shanee Moret.\n\nThe live link is emailed before the event and included in every reminder. Check your email from Growth Academy Global for access details.\n\nPlease show up on time.
 LOCATION:Access details in your email
 STATUS:CONFIRMED
 END:VEVENT
 
 BEGIN:VEVENT
-UID:ai-masterclass-day2-20260610@masterclass.growthacademy.global
+UID:ai-masterclass-day2-20260715@masterclass.growthacademy.global
 DTSTAMP:20260530T120000Z
 SEQUENCE:1
-DTSTART:20260610T161500Z
-DTEND:20260610T171500Z
-SUMMARY:AI Agents Masterclass - Day 2: AI Agents for Lead Gen and Sales
-DESCRIPTION:Day 2 of the free 3-day ChatGPT to Your First AI Agent masterclass with Shanee Moret.\n\nThe live link is emailed before the event and included in every reminder. Check your email from Growth Academy Global for access details.
+DTSTART:20260715T161500Z
+DTEND:20260715T171500Z
+SUMMARY:Build Your AI Agent Operating System - Day 2: Your Follow-Up Engine
+DESCRIPTION:Day 2 of the free 3-day Build Your AI Agent Operating System masterclass with Shanee Moret.\n\nThe live link is emailed before the event and included in every reminder. Check your email from Growth Academy Global for access details.
 LOCATION:Access details in your email
 STATUS:CONFIRMED
 END:VEVENT
 
 BEGIN:VEVENT
-UID:ai-masterclass-day3-20260611@masterclass.growthacademy.global
+UID:ai-masterclass-day3-20260716@masterclass.growthacademy.global
 DTSTAMP:20260530T120000Z
 SEQUENCE:1
-DTSTART:20260611T161500Z
-DTEND:20260611T171500Z
-SUMMARY:AI Agents Masterclass - Day 3: AI Agents for Marketing and Content Systems
-DESCRIPTION:Day 3 of the free 3-day ChatGPT to Your First AI Agent masterclass with Shanee Moret.\n\nThe live link is emailed before the event and included in every reminder. Check your email from Growth Academy Global for access details.
+DTSTART:20260716T161500Z
+DTEND:20260716T171500Z
+SUMMARY:Build Your AI Agent Operating System - Day 3: Your Command Center
+DESCRIPTION:Day 3 of the free 3-day Build Your AI Agent Operating System masterclass with Shanee Moret.\n\nThe live link is emailed before the event and included in every reminder. Check your email from Growth Academy Global for access details.
 LOCATION:Access details in your email
 STATUS:CONFIRMED
 END:VEVENT
