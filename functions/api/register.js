@@ -9,7 +9,7 @@ const SITE = 'https://masterclass.growthacademy.global';
 const ICS_URL = `${SITE}/series.ics`;
 const REFERRAL_URL = `${SITE}/?utm_source=registrant-share&utm_campaign=july14-masterclass-welcome-email`;
 const SERIES_ID = 'codex-masterclass-july-2026';
-const SERIES_NAME = 'Build Your AI Agent Operating System Masterclass | July 14-16, 2026';
+const SERIES_NAME = 'Build Your AI Agent Operating System Masterclass | Next Session Waitlist';
 const RESEND_SIGNAL_SEGMENTS = [
   'Signal - Current Codex Masterclass July 2026',
   'Signal - Now Current Event',
@@ -201,7 +201,7 @@ async function sendWelcome({ env, name, email }) {
     from: FROM,
     to: [email],
     reply_to: REPLY_TO,
-    subject: "You're in. Build Your AI Agent Operating System starts Tue July 14.",
+    subject: "You're on the list: Build Your AI Agent Operating System",
     html,
     text,
     tags: [{ name: 'kind', value: 'welcome' }, { name: 'series', value: SERIES_ID }],
@@ -225,7 +225,7 @@ Email: ${email}
 Business owner: ${businessOwner}
 Registered at: ${registeredAt}
 Event: ${SERIES_NAME}
-Time: 12:15pm ET each day
+Time: announced with the next dates
 
 Registration page:
 ${SITE}`;
@@ -240,7 +240,7 @@ ${SITE}`;
     <tr><td style="font-weight:700;padding:4px 16px 4px 0;">Business owner</td><td style="padding:4px 0;">${escapeHtml(businessOwner)}</td></tr>
     <tr><td style="font-weight:700;padding:4px 16px 4px 0;">Registered</td><td style="padding:4px 0;">${escapeHtml(registeredAt)}</td></tr>
     <tr><td style="font-weight:700;padding:4px 16px 4px 0;">Event</td><td style="padding:4px 0;">${escapeHtml(SERIES_NAME)}</td></tr>
-    <tr><td style="font-weight:700;padding:4px 16px 4px 0;">Time</td><td style="padding:4px 0;">12:15pm ET each day</td></tr>
+    <tr><td style="font-weight:700;padding:4px 16px 4px 0;">Time</td><td style="padding:4px 0;">announced with the next dates</td></tr>
   </table>
   <p style="margin:18px 0 0;"><a href="${SITE}" style="color:#005BFF;font-weight:700;">Open registration page</a></p>
 </body></html>`;
@@ -312,8 +312,8 @@ async function syncRegistrationContact({ env, name, email, businessOwner }) {
         current_masterclass_registered_at: registeredAt,
         business_owner: businessOwner,
         followup_angle: customerSignal
-          ? 'High-value customer just registered for the July Codex Masterclass. Prioritize personal follow-up and AI community invitation.'
-          : 'Timely: just registered for the July Codex Masterclass. Follow up around attendance and invite to the AI community.',
+          ? 'High-value customer just joined the Codex Masterclass waitlist. Prioritize personal follow-up and AI community invitation.'
+          : 'Timely: just joined the Codex Masterclass waitlist. Follow up and invite to the AI community.',
         evidence_summary: appendEvidence(
           appendEvidence(propertyValue(existingProperties.evidence_summary), customerEvidence),
           `Registered for ${SERIES_NAME}`
@@ -479,17 +479,14 @@ function welcomeText({ firstName }) {
 
 You're registered for the free 3-day Build Your AI Agent Operating System masterclass.
 
-When: Tuesday July 14 – Thursday July 16, 2026
-Time: 12:15pm ET each day
-Where: The live link will be emailed before the event and included in reminders
+You're on the list for the next live session. You'll get the dates first, along with the live link and reminders.
 
-What you'll get:
-  Day 1 (Tue July 14) — Your Business Context
-  Day 2 (Wed July 15) — Your Follow-Up Engine
-  Day 3 (Thu July 16) — Your Command Center
+What you'll learn:
+  Day 1 — Your Business Context
+  Day 2 — Your Follow-Up Engine
+  Day 3 — Your Command Center
 
-Add all 3 sessions to your calendar:
-${ICS_URL}
+While you wait, watch recent live trainings: https://www.growthacademy.global/events
 
 Know one business owner who uses ChatGPT and should learn how to put Codex to work?
 Send them this registration page:
@@ -517,12 +514,12 @@ function welcomeHtml({ firstName }) {
 <title>You're in.</title>
 </head>
 <body style="margin:0;padding:0;background:#050505;font-family:${disp};color:#ffffff;-webkit-font-smoothing:antialiased;">
-<div style="display:none;max-height:0;overflow:hidden;opacity:0;">You're registered for the free 3-day Build Your AI Agent Operating System masterclass. July 14-16, 12:15pm ET.</div>
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;">You're on the list for the free 3-day Build Your AI Agent Operating System masterclass. You'll get the next live dates first.</div>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#050505;">
   <tr><td align="center" style="padding:0 0 40px 0;">
 
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0f0f10;border-bottom:1px solid #373737;">
-      <tr><td align="center" style="padding:13px 16px;color:#1fb6ff;font-family:${mono};font-size:12px;line-height:1.3;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;">Live Masterclass &nbsp;|&nbsp; July 14-16 &nbsp;|&nbsp; 12:15 PM ET</td></tr>
+      <tr><td align="center" style="padding:13px 16px;color:#1fb6ff;font-family:${mono};font-size:12px;line-height:1.3;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;">Live Masterclass &nbsp;|&nbsp; Next dates announced soon</td></tr>
     </table>
 
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;">
@@ -539,29 +536,25 @@ function welcomeHtml({ firstName }) {
             <h1 style="font-family:${disp};font-size:46px;line-height:0.92;font-weight:600;letter-spacing:-0.01em;color:#ffffff;margin:0 0 20px 0;">Hi ${escapeHtml(firstName)}.<br>You're <span style="color:#1fb6ff;border-bottom:3px solid #0a72ff;">in</span>.</h1>
 
             <p style="color:#ffffff;font-size:18px;line-height:1.4;margin:0 0 18px 0;font-weight:500;">Your seat is saved for the free 3-day <span style="color:#1fb6ff;font-weight:700;">Build Your AI Agent Operating System</span> masterclass.</p>
-            <p style="color:#b8b8c0;font-size:15px;line-height:1.6;margin:0 0 30px 0;">We go live <strong style="color:#ffffff;">Tuesday, July 14</strong> at <strong style="color:#ffffff;">12:15 PM ET</strong>. The live link is emailed before the event and included in every reminder.</p>
+            <p style="color:#b8b8c0;font-size:15px;line-height:1.6;margin:0 0 30px 0;">You're first in line for the next live dates. As soon as they're set, you'll get them here, along with the live link and reminders before each session.</p>
 
             <div style="font-family:${mono};font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:#1fb6ff;padding-bottom:12px;border-bottom:1px solid #373737;margin-bottom:0;">What you'll learn</div>
             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 30px 0;">
               <tr><td style="padding:18px 0;border-bottom:1px solid #252525;">
-                <div style="font-family:${mono};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#7f8590;margin-bottom:7px;">Day 1 &middot; Tue July 14</div>
+                <div style="font-family:${mono};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#7f8590;margin-bottom:7px;">Day 1</div>
                 <div style="font-family:${disp};color:#ffffff;font-size:21px;line-height:1.1;font-weight:600;">Your Business Context</div>
               </td></tr>
               <tr><td style="padding:18px 0;border-bottom:1px solid #252525;">
-                <div style="font-family:${mono};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#7f8590;margin-bottom:7px;">Day 2 &middot; Wed July 15</div>
+                <div style="font-family:${mono};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#7f8590;margin-bottom:7px;">Day 2</div>
                 <div style="font-family:${disp};color:#ffffff;font-size:21px;line-height:1.1;font-weight:600;">Your Follow-Up Engine</div>
               </td></tr>
               <tr><td style="padding:18px 0;">
-                <div style="font-family:${mono};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#7f8590;margin-bottom:7px;">Day 3 &middot; Thu July 16</div>
+                <div style="font-family:${mono};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#7f8590;margin-bottom:7px;">Day 3</div>
                 <div style="font-family:${disp};color:#ffffff;font-size:21px;line-height:1.1;font-weight:600;">Your Command Center</div>
               </td></tr>
             </table>
 
-            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 30px 0;">
-              <tr><td align="center" bgcolor="#0a72ff" style="background:#0a72ff;">
-                <a href="${ICS_URL}" style="display:block;color:#050505;text-decoration:none;text-align:center;padding:17px 24px;font-family:${mono};font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:0.05em;">Add all 3 sessions to calendar &rarr;</a>
-              </td></tr>
-            </table>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 30px 0;background:#0c0f16;border:1px solid #373737;"><tr><td style="padding:18px 22px;color:#b8b8c0;font-size:14px;line-height:1.6;">While you wait: watch recent live trainings on the replay hub at <a href="https://www.growthacademy.global/events" style="color:#1fb6ff;text-decoration:none;">growthacademy.global/events</a>.</td></tr></table>
 
             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 30px 0;background:#0c0f16;border:1px solid #373737;">
               <tr><td style="padding:24px 22px;">
